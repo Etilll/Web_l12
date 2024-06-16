@@ -16,7 +16,7 @@ class Contact(Base):
     phone = Column(String)
     birthday = Column(Date, default=None)
     owner = Column('user_id', ForeignKey('users.id', ondelete='CASCADE'))
-    ouser = relationship("User", backref="contacts")
+    theuser = relationship("User", backref="contacts")
 
 class User(Base):
     __tablename__ = "users"
@@ -27,7 +27,6 @@ class User(Base):
     password = Column(String(255), nullable=False)
     refresh_token = Column(String(255), nullable=True)
     avatar = Column(String(255), nullable=True)
-    #contacts = relationship("Contact", back_populates="ouser")
 
 Base.metadata.create_all(bind=engine)
 
